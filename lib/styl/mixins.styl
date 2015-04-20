@@ -1,0 +1,268 @@
+font_text()
+  font-family 'PixelMplus10',monospace
+font_head()
+  font-family 'misaki_gothic',monospace
+font_logo()
+  font-family 'BMRizer','misaki_gothic',monospace
+font_share()
+  font-family 'BMplamo','misaki_gothic',monospace
+
+// themes
+theme_light()
+  color #333
+  background-color whitesmoke
+theme_dark()
+  color #ccc
+  background-color #333
+theme_sepia()
+  color #596256
+  background-color #e0dbda
+theme_highlight()
+  color maroon
+  background-color cornsilk
+
+// keyframes
+ng-hide(name='fade',time=.5s)
+  &.ng-hide-remove
+    animation name+'In' time
+  &.ng-hide-add
+    animation name+'Out' time
+
+// display width height margin padding
+central(textAlign=center)
+  absolute 0 0 0 0
+  margin auto
+  text-align textAlign
+
+vsize(volume,containImage=true)
+  @media (orientation: portrait)
+    size unit(volume,'vw')
+    max-width unit(volume,'vw')
+    if containImage
+      svg
+      img
+        width unit(volume,'vw')
+        max-height unit(volume,'vw')
+    
+  @media (orientation: landscape)
+    size unit(volume,'vh')
+    max-width unit(volume,'vh')
+    if containImage
+      svg
+      img
+        width unit(volume,'vh')
+        max-height unit(volume,'vh')
+
+tile(volume=15)
+  font-size 0
+  a
+    display inline-block
+    font-size initial
+  
+  @media (orientation: portrait)
+    margin unit(volume/6,'vw')
+  @media (orientation: landscape)
+    margin unit(volume/6,'vh')
+    
+  a
+    vsize(volume)
+    margin unit(volume/3*0.1,'rem')
+    
+    position relative
+    svg
+    img
+      central()
+      object-fit contain
+
+overlay()
+  fixed 0
+  z-index 200
+  background-color alpha(#333,.75)
+
+prompt()
+  overlay()
+  > *
+    central()
+    size 80vw 56vh
+    min-height 12em
+    padding 1em
+    
+    text-align left
+
+    theme_light()
+    
+    button+button
+      margin-left .5em
+
+notify()
+  theme_sepia()
+  display block
+  padding .5em
+    
+fig(contentFlex=2)
+  display flex
+  
+  figure
+    flex 1
+    >img
+    >svg
+      display block // fix auto margin-top
+      size 100%
+  figcaption
+    flex contentFlex
+
+showcase()
+  figure
+    a
+      display block
+      cursor pointer
+  
+  @media (orientation: portrait)
+    >figure
+      size 100vw
+    figure
+      max-height calc(100vh \- menu_height)
+      a
+        size 100%
+    figcaption
+      padding .5em 0
+      padding-bottom 0
+
+  @media (orientation: landscape)
+    fig()
+    figure
+      a
+      svg
+        max-height calc(100vh \- menu_height)
+      a
+        relative 0
+    figcaption
+      flex 2
+    
+form()
+  central(left)
+  size 90vw 56vh
+  min-height 14em
+
+  fig()
+  
+  theme_light()
+  figure
+    theme_sepia()
+    a
+      display block
+      text-align center
+      font-size .5em
+      line-height @height
+      overflow ellipsis
+      svg
+        size 100%
+        max-height 50vh
+  figcaption
+    padding 0!important
+    
+    >footer
+      padding .5em 0
+      
+      text-align center
+      
+      > *
+        margin-right .5em
+
+letter()
+  footer_height= .5rem
+  button_fontsize= 50%
+  button_width= 5em
+  fig()
+  
+  pre
+    theme_light()
+  
+  button
+    font-size button_fontsize
+    min-width button_width
+    
+  relative 0
+  padding-bottom footer_height
+  footer
+    absolute false button_width 0 false
+    height footer_height
+    
+    font-size button_fontsize
+
+comment()
+  fig()
+  figure
+  figcaption
+    footer
+      text-align right
+      
+  .from
+  .to
+    display block
+    flex .5
+    svg
+      size 100%
+  
+  .to
+    a
+      font-size 50%
+      display block
+      width 3em
+      text-align center
+  
+  figcaption
+    padding 0 .5em
+    font-size 65%
+  figcaption+figure
+    text-align right
+  
+  time
+    font-size xx-small
+    
+  h3
+    font-size 50%
+    width 100%
+    overflow hidden
+    white-space nowrap
+    // overflow ellipsis
+
+active()
+  theme_light()
+  
+  overflow ellipsis
+  width 8em
+  opacity 1
+
+hostname()
+  display inline-block
+  min-width 12em
+
+selectbox()
+  display block
+  width 100%
+  padding 0
+  // padding-left 0.5em
+  padding-right 1.5em
+  
+  font-size 100%
+  line-height 1.5
+  
+  border 1px dotted #333
+  border-radius 0
+
+  //disable allow char
+  // -webkit-appearance none
+  // -moz-appearance none
+  // -ms-appearance none
+  appearance none
+  //for Firefox
+  text-indent .01px
+  text-overflow ""
+  
+  background #FFF no-repeat right
+
+list-no-fontsize(fontSize=initial)
+  font-size 0
+  >*
+    font-size fontSize

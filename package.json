@@ -1,0 +1,27 @@
+{
+  "name": "edgy-comment-viewer",
+  "main": "edgy-comment-viewer",
+  "version": "0.0.0-rc.0",
+  "description": "",
+
+  "scripts": {
+    "start": "electron .",
+    "build-bower": "onefile --json --output public/pkgs.js"
+  },
+
+  "devDependencies": {
+    "coffee-script": "^1.9.2",
+    "electron-prebuilt": "^0.24.0",
+    "nicolive": "0.0.0-rc.1",
+    "onefile": "^0.2.11",
+
+    "express": "^4.12.3",
+    "jade": "^1.9.2",
+
+    "stylus": "^0.50.0",
+    "kouto-swiss": "^0.11.11"
+  },
+  
+  "author": "59naga <i59naga@icloud.com> (http://berabou.me)",
+  "license": "MIT"
+}

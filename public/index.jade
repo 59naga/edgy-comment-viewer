@@ -1,0 +1,27 @@
+doctype
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title Document
+
+    script(src="pkgs.js")
+    script.
+      require('coffee-script/register');
+      require(process.env.PUBLIC+'/index.coffee');
+
+    link(rel="stylesheet" href="http://static.edgy.black/misaki_gothic.css")
+    link(rel="stylesheet" href="http://static.edgy.black/pixel_mplus10.css")
+    link(rel="stylesheet" href="http://static.edgy.black/bmplamo.css")
+    link(rel="stylesheet" href="http://static.edgy.black/bmrizer.css")
+    link(rel="stylesheet" href="index.css")
+    style html{background:#333;color:whitesmoke;font-family:"misaki_gothic";font-size:4.5vw;text-align:center}
+    
+
+  body
+    h1 16bit-comment-viewer
+    input(ng-model="channel")
+
+    ol
+      li
+
+        pre

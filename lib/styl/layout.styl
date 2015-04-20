@@ -1,0 +1,119 @@
+error()
+  display block
+  
+  h1
+    central()
+    size false 1em
+    font-size xx-large
+    
+    color white
+
+front()
+  >ui-view
+    overflow-x hidden
+    padding-bottom menu_height
+  >header
+    display none
+    fixed false 0 false false
+    opacity .25
+  >.menu
+    fixed false false 0 false
+    width 100%
+    height menu_height
+    white-space nowrap
+    overflow hidden
+    
+    z-index 500
+
+    background-color alpha(#333,.75)
+    a
+      size item_height - .5em
+      line-height item_height - .5em
+      padding .25em
+      
+      svg
+        size item_height - .5em
+        vertical-align middle
+        margin-right .5em
+      
+      display inline-block
+      overflow hidden
+      
+    a
+      transition all .5s
+      
+      ng-hide('fade')
+      &.ng-hide-add
+        width 0
+        padding .25em 0
+      
+    a:hover
+      active()
+    
+    &:not(:hover)
+      a.active
+        active()
+    
+    span
+      z-index 10
+
+mypage()
+  front()
+  
+  .artworks
+    width 100%
+    fig()
+
+help()
+  margin 1em
+  
+  article
+    margin .5em
+    padding .5em
+    theme_light()
+  section
+    padding 0
+      margin-top 1em
+    +section
+      padding-top 1em
+    
+    site
+      display block
+      text-align right
+  .license
+    section
+      width 12em
+      margin 0 auto
+      
+      &:nth-of-type(1)
+        margin-top 1em
+    
+    footer
+      margin-top 1em
+  
+  footer
+    text-align right
+  ul
+    padding-left 1em
+    
+    li:before
+      content:'・'
+  
+  ul+h2
+    padding-top .5em
+  svg
+    size 1.25em
+    margin-right .25em
+    vertical-align middle
+  p
+  li
+    font_head()
+    line-height 1.2
+  
+  p:after
+    content:'▼'
+  p+p
+    padding-top .5em
+  
+  a
+    text-decoration underline

@@ -1,0 +1,151 @@
+edgy()
+  body
+    *
+      overflow hidden// fix IE10
+    theme_dark()
+    ::selection
+      theme_highlight()
+    
+    *
+      font_head()
+    pre
+    textarea
+      font_text()
+
+    @media (orientation:portrait)
+      font-size 5vw
+    @media (orientation:landscape)
+      font-size 5vh
+  
+  // stereotypes
+  .logo
+    input
+      +placeholder()
+        font_logo()
+        line-height 2
+        font-size 50%
+  .guest
+    h1
+    h2
+    h3
+    h3 a
+      font_logo()
+    h3
+    h3 a
+      font-size 50%
+  .close
+    absolute 1em 1em false false
+
+  [disabled]
+    opacity .5
+    
+  ui-view
+  [ui-view]
+    display block
+    size 100%
+  
+  ui-view+ui-view
+    top 0
+
+  body ui-view.ng-enter
+  [ui-view].ng-enter
+    display block
+    z-index 500
+    animation fadeIn .5s
+    &.front-mypage-artworks
+      animation slideInRight .5s
+  body ui-view.ng-leave
+  [ui-view].ng-leave
+    position absolute
+    animation fadeOut .5s
+  
+  html
+    -ms-overflow-style scrollbar !important
+    // https://twitter.com/simevidas/status/585968924883341312
+  
+  h1
+    font-size 200%
+  h2
+    font-size 150%
+  h3
+    font-size 100%
+  h4
+    font-size 80%
+  h5
+    font-size 60%
+  p
+    font-size smaller
+    
+  pre
+    white-space pre-line
+    word-break break-word
+    padding .5em 0
+    
+  section
+    img
+    svg
+      width 2em
+      vertical-align middle
+      
+  dl   
+    padding .5em
+    
+    dt
+      svg
+        size 2em
+
+    dd
+      font_text()
+      display block
+      font-size 300%
+      text-align right
+      
+  a
+    color inherit
+    text-decoration none
+    
+    &:hover
+      cursor pointer
+      transition opacity .5s linear
+      opacity .5
+  
+  svg
+    size 100%
+  
+  label
+  input
+  button
+  textarea
+    font-size inherit
+  
+  label
+  input
+  button
+  textarea
+    box-sizing-reset()
+    display block
+    width 100%
+    border 0
+    padding 0
+    
+    &:focus
+      theme_sepia()
+    
+  label
+    display flex
+    > *
+      display block
+    
+  textarea
+    width 100%
+    min-height 5em
+    
+  time
+    font-size smaller
+    display block
+    
+  button
+    theme_sepia()
+    
+    display inline-block
+    width auto
