@@ -3,3 +3,34 @@
 
 meyer-reset()
 edgy()
+
+body
+  theme_dark()
+  ::selection
+    theme_highlight()
+  
+  *
+    font_head()
+  pre
+    font_text()
+  
+  input
+    font-size 200%
+    
+  h2
+    font_logo()
+    font-size 150%
+
+  section
+    &.ng-enter
+      animation fadeIn .5s
+      
+    fig()
+    figcaption
+      theme_light()
+      
+    margin .5em
+    
+  footer
+    pre
+      font-size 75%

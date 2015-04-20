@@ -9,19 +9,23 @@ html(lang="en")
       require('coffee-script/register');
       require(process.env.PUBLIC+'/index.coffee');
 
-    link(rel="stylesheet" href="http://static.edgy.black/misaki_gothic.css")
-    link(rel="stylesheet" href="http://static.edgy.black/pixel_mplus10.css")
-    link(rel="stylesheet" href="http://static.edgy.black/bmplamo.css")
-    link(rel="stylesheet" href="http://static.edgy.black/bmrizer.css")
-    link(rel="stylesheet" href="index.css")
-    style html{background:#333;color:whitesmoke;font-family:"misaki_gothic";font-size:4.5vw;text-align:center}
+    link(href="http://static.edgy.black/misaki_gothic.css" rel="stylesheet")
+    link(href="http://static.edgy.black/pixel_mplus10.css" rel="stylesheet")
+    link(href="http://static.edgy.black/bmplamo.css" rel="stylesheet")
+    link(href="http://static.edgy.black/bmrizer.css" rel="stylesheet")
+    link(href="index.css" rel="stylesheet")
+
+  body(ng-app="nicolive")
+    form(ng-submit="view()")
+      input(ng-model="channel" autofocus placeholder="lv*****")
     
+    main
+      section(ng-repeat="chat in chats")
+        figure
+          img(jaggy)
+        figcaption
+          h2 {{chat.no}}
+          pre {{chat.body}}
 
-  body
-    h1 16bit-comment-viewer
-    input(ng-model="channel")
-
-    ol
-      li
-
-        pre
+          footer
+            pre {{chat.attr| json}}
