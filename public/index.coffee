@@ -1,6 +1,9 @@
 nicolive= require 'nicolive'
 cheerio= require 'cheerio'
 
+# url= window.jsfxr `[3,,0.3708,0.5822,0.3851,0.0584,,-0.0268,,,,-0.0749,0.7624,,,,,,1,,,,,0.5]`
+console.log typeof window.jsfxr
+
 app= angular.module 'nicolive',['ngAnimate','jaggy']
 app.run ($rootScope)->
   $rootScope.channel= 'lv218379698'

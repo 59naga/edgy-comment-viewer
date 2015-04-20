@@ -5,7 +5,7 @@
   "description": "",
   "scripts": {
     "start": "electron .",
-    "build-bower": "onefile --json --output public/pkgs.js"
+    "build": "onefile --json --output public/pkgs.js"
   },
   "devDependencies": {
     "cheerio": "^0.19.0",
@@ -15,7 +15,7 @@
     "jade": "^1.9.2",
     "kouto-swiss": "^0.11.11",
     "nicolive": "0.0.0-rc.1",
-    "onefile": "^0.2.11",
+    "onefile": "^0.2.13",
     "stylus": "^0.50.0"
   },
   "author": "59naga <i59naga@icloud.com> (http://berabou.me)",
