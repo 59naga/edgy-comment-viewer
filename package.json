@@ -5,24 +5,22 @@
   "description": "",
 
   "scripts": {
+    "test": "exit 0",
     "start": "electron .",
     "build": "onefile --json --output public/pkgs.js",
-
     "prerelease": "npm run build && rm -rf bower_components && coffee -c public/index.coffee",
     "release": "grunt"
   },
-
   "dependencies": {
     "cheerio": "^0.19.0",
     "coffee-script": "^1.9.2",
-    "nicolive": "0.0.0-rc.1",
-    "onefile": "^0.2.14-rc.0",
-
     "express": "^4.12.3",
     "jade": "^1.9.2",
-
-    "stylus": "^0.50.0",
-    "kouto-swiss": "^0.11.11"
+    "kouto-swiss": "^0.11.11",
+    "moment": "^2.10.2",
+    "nicolive": "0.0.0-rc.1",
+    "onefile": "^0.2.14-rc.0",
+    "stylus": "^0.50.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -33,5 +31,13 @@
   },
   
   "author": "59naga <i59naga@icloud.com> (http://berabou.me)",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/59naga/edgy-comment-viewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/59naga/edgy-comment-viewer/issues"
+  },
+  "homepage": "https://github.com/59naga/edgy-comment-viewer"
 }

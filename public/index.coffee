@@ -1,30 +1,57 @@
 nicolive= require 'nicolive'
 cheerio= require 'cheerio'
-
-Jsfxr= require '../lib/jsfxr'
-jsfxr= new Jsfxr
+moment= require 'moment'
+moment.locale 'ja'
 
 app= angular.module 'nicolive',[
-  'ngAnimate'
   'ngStorage'
+
+  'ngAnimate'
+
   'jaggy'
+  'webcolor'
+
+  'jsfxr'
 ]
+
+app.directive 'timeAgo',($timeout)->
+  restrict:'A'
+  scope:
+    timeAgo:'='
+  link:(scope,element)->
+    update= -> element.text moment(scope.timeAgo*1000).fromNow()
+
+    update()
+    $timeout ->
+      update()
+    ,1000
 
 app.run (
   $rootScope
   $localStorage
+  $webcolorLoadingBar
 )->
   $rootScope.$storage= $localStorage
   $rootScope.chats= []
   $rootScope.viewer= null
 
+  $rootScope.now= -> Math.floor(Date.now()/1000)
+
   $rootScope.view= ->
+    $rootScope.error= ''
     $rootScope.chats= []
     $rootScope.viewer.end() if $rootScope.viewer?
 
-    $localStorage.channel= $localStorage.channel.match(/lv\d+/)[0]
-    nicolive.view $localStorage.channel,{from:1},(error,viewer)->
-      return alert error if error?
+    channel= $localStorage.channel or ''
+    mached= channel.match(/lv\d+/)
+    $localStorage.channel= mached?[0] or ''
+
+    $webcolorLoadingBar.start()
+    nicolive.view $localStorage.channel,(error,viewer)->
+      $webcolorLoadingBar.complete()
+      if error?
+        $rootScope.error= cheerio(error).find('code').text()
+        return $rootScope.$apply()
 
       chunks= ''
       $rootScope.viewer= viewer
@@ -49,35 +76,3 @@ app.run (
             $rootScope.chats.unshift chat
 
   $rootScope.view() if $localStorage.channel.length
-
-app.directive 'popopo',->
-  restrict: 'A'
-  scope:
-    popopo:'='
-  link: (scope,element)->
-    text= scope.popopo
-
-    jsfxr.regenerate
-      waveType:
-        0
-      sustainTime:
-        0.05+0.05*Math.random()
-      decayTime:
-        0.10+0.10*Math.random()
-      startFrequency:
-        0.10+0.40*Math.random()
-      slide:
-        0.10+0.10*Math.random()
-      lpFilterCutoff:
-        1
-      masterVolume:
-        0.5
-
-    i= 0
-    setTimeout -> popopo()
-    popopo= ->
-      return if text.length<i
-      element.text text.slice 0,i++
-      jsfxr.play()
-
-      setTimeout popopo,1000/20

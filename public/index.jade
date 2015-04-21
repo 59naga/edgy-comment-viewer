@@ -21,11 +21,16 @@ html(lang="en")
   body(ng-app="nicolive")
     form(ng-submit="view()")
       input(ng-model="$storage.channel" autofocus placeholder="lv***********")
+      pre(ng-show="error") {{error}}
     
     main
       section(ng-repeat="chat in chats")
         figcaption
-          h2 {{chat.no}}
-          pre(popopo="chat.body")
+          h2 {{chat.attr.no}}.{{chat.attr.name || chat.attr.user_id}}
+          pre(jsfxr="chat.body" jsfxr-disabled="now()-10 > chat.attr.date")
+
+          footer
+            pre(time-ago="chat.attr.date")
+            //- pre(ng-hide="process.env.NODE_ENV==='production'") {{chat.attr|json}}
         //- figure
           img(jaggy)

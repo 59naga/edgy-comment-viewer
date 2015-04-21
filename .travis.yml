@@ -1,0 +1,20 @@
+deploy:
+  provider: releases
+  api_key:
+    secure: maQNx7F2Rn8CztN6whOwEUbOcaIGDKeYn5WmaZShrSAMjA6GkO2C/Zl1cirRZiUwZfxDEdZGMh5gBDu/r65R8vlnZJqYDWVf7nB3She1RjqmrCoKd5W+5d0lpxSmPzK1SHF7JwhcZ65+2dwhdqcJ6H/KpM8nB3CT0XOSDJAsJ8k=
+  file:
+    - build/midnight-osx32.zip
+    - build/midnight-osx64.zip
+    - build/midnight-win32.zip
+    - build/midnight-win64.zip
+  on:
+    repo: 59naga/midnight
+    tags: true
+    all_branches: true
+  skip_cleanup: true
+
+# quick boot options
+sudo: false
+cache:
+  directories:
+    - node_modules
