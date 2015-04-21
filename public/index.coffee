@@ -1,12 +1,20 @@
 nicolive= require 'nicolive'
 cheerio= require 'cheerio'
 
-# url= window.jsfxr `[3,,0.3708,0.5822,0.3851,0.0584,,-0.0268,,,,-0.0749,0.7624,,,,,,1,,,,,0.5]`
-console.log typeof window.jsfxr
+Jsfxr= require '../lib/jsfxr'
+jsfxr= new Jsfxr
 
-app= angular.module 'nicolive',['ngAnimate','jaggy']
-app.run ($rootScope)->
-  $rootScope.channel= 'lv218379698'
+app= angular.module 'nicolive',[
+  'ngAnimate'
+  'ngStorage'
+  'jaggy'
+]
+
+app.run (
+  $rootScope
+  $localStorage
+)->
+  $rootScope.$storage= $localStorage
   $rootScope.chats= []
   $rootScope.viewer= null
 
@@ -14,10 +22,9 @@ app.run ($rootScope)->
     $rootScope.chats= []
     $rootScope.viewer.end() if $rootScope.viewer?
 
-    nicolive.view $rootScope.channel,(error,viewer)->
+    $localStorage.channel= $localStorage.channel.match(/lv\d+/)[0]
+    nicolive.view $localStorage.channel,{from:1},(error,viewer)->
       return alert error if error?
-
-      console.log 'Connected',$rootScope.channel
 
       chunks= ''
       $rootScope.viewer= viewer
@@ -40,3 +47,37 @@ app.run ($rootScope)->
               body: element.text()
 
             $rootScope.chats.unshift chat
+
+  $rootScope.view() if $localStorage.channel.length
+
+app.directive 'popopo',->
+  restrict: 'A'
+  scope:
+    popopo:'='
+  link: (scope,element)->
+    text= scope.popopo
+
+    jsfxr.regenerate
+      waveType:
+        0
+      sustainTime:
+        0.05+0.05*Math.random()
+      decayTime:
+        0.10+0.10*Math.random()
+      startFrequency:
+        0.10+0.40*Math.random()
+      slide:
+        0.10+0.10*Math.random()
+      lpFilterCutoff:
+        1
+      masterVolume:
+        0.5
+
+    i= 0
+    setTimeout -> popopo()
+    popopo= ->
+      return if text.length<i
+      element.text text.slice 0,i++
+      jsfxr.play()
+
+      setTimeout popopo,1000/20

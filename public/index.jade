@@ -5,28 +5,27 @@ html(lang="en")
     title Document
 
     script(src="pkgs.js")
-    script(src="jsfxr.js")
     script.
-      require('coffee-script/register');
-      require(process.env.PUBLIC+'/index.coffee');
+      if(process.env.NODE_ENV==='production'){
+        require(process.env.PUBLIC+'/index.js');
+      }
+      else{
+        require('coffee-script/register');
+        require(process.env.PUBLIC+'/index.coffee');
+      }
 
     link(href="http://static.edgy.black/misaki_gothic.css" rel="stylesheet")
     link(href="http://static.edgy.black/pixel_mplus10.css" rel="stylesheet")
-    link(href="http://static.edgy.black/bmplamo.css" rel="stylesheet")
-    link(href="http://static.edgy.black/bmrizer.css" rel="stylesheet")
     link(href="index.css" rel="stylesheet")
 
   body(ng-app="nicolive")
     form(ng-submit="view()")
-      input(ng-model="channel" autofocus placeholder="lv*****")
+      input(ng-model="$storage.channel" autofocus placeholder="lv***********")
     
     main
       section(ng-repeat="chat in chats")
-        figure
-          img(jaggy)
         figcaption
           h2 {{chat.no}}
-          pre {{chat.body}}
-
-          footer
-            pre {{chat.attr| json}}
+          pre(popopo="chat.body")
+        //- figure
+          img(jaggy)

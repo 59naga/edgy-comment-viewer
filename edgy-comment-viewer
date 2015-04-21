@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+if(process.argv.join().indexOf('electron-prebuilt')===-1){
+  process.env.NODE_ENV= 'production';
+}
+
 if(typeof require('module')._extensions['.coffee']==='undefined'){
   // Avoid conflicts with another version
   require('coffee-script/register');
