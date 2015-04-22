@@ -34,4 +34,3 @@ gulp.task 'build',->
     version: version
     rebuild: false
     platforms: platforms
-    symbols: yes
