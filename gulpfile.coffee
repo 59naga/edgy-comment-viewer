@@ -20,9 +20,9 @@ gulp.task 'zip',['build'],->
       script= "zip -r #{to} #{from}"
       [bin,args...]= script.split ' '
       
-      child= spawn bin,args#,stdio:'inherit'
+      child= spawn bin,args,stdio:'ignore'
       child.on 'error',(error)-> reject error
-      child.on 'end',-> resolve()
+      child.on 'close',-> resolve()
 
   Promise.all promises
 
