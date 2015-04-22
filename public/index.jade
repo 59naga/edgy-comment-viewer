@@ -24,13 +24,17 @@ html(lang="en")
       pre(ng-show="error") {{error}}
     
     main
-      section(ng-repeat="chat in chats")
+      section(ng-repeat="chat in chats" ng-class="{owner:chat.attr.premium==3,command:chat.attr.premium==2}")
         figcaption
-          h2 {{chat.attr.no}}.{{chat.attr.name || chat.attr.user_id}}
           pre(jsfxr="chat.body" jsfxr-disabled="now()-10 > chat.attr.date")
 
           footer
+            h3 {{chat.attr.no}}
             pre(time-ago="chat.attr.date")
-            //- pre(ng-hide="process.env.NODE_ENV==='production'") {{chat.attr|json}}
-        //- figure
-          img(jaggy)
+        figure(
+          ng-hide="chat.attr.premium==3"
+          nickname="chat.attr.user_id"
+          title="{{nickname}}"
+        )
+          img(ng-src="{{chat.usericon}}" err-src="{{blank}}")
+          h2 {{nickname}}

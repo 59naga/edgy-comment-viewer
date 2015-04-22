@@ -20,15 +20,47 @@ body
   h2
     font_logo()
     font-size 150%
-
+    white-space nowrap
+    overflow ellipsis
+  
+  .command
+    margin 1em
+    min-height 3em
+  .owner
+    margin 2em
+    min-height 3em
+    theme_sepia()
+    figcaption
+      >pre
+        font-size 150%
   section
     &.ng-enter
       animation fadeIn .5s
       
     fig()
+    figure
+      h2
+        text-align right
+        font-size 75%
     figcaption
       theme_light()
       padding .25em
+      
+      position relative
+      footer
+        h3
+          font_text()
+          absolute false false 0 .25em
+          font-size 250%
+          line-height 1.2
+          
+          opacity 0.2
+        pre
+          absolute false .25em .25em false
+          
+          opacity 0.5
+        
+        margin-top .25em
     
     footer
       text-align right

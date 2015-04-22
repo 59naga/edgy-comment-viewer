@@ -15,7 +15,6 @@ app= angular.module 'nicolive',[
 ]
 
 app.directive 'timeAgo',($timeout)->
-  restrict:'A'
   scope:
     timeAgo:'='
   link:(scope,element)->
@@ -25,6 +24,22 @@ app.directive 'timeAgo',($timeout)->
     $timeout ->
       update()
     ,1000
+app.directive 'errSrc',->
+  (scope,element,attrs)->
+    element.bind 'error',->
+      attrs.$set 'src',attrs.errSrc if attrs.src isnt attrs.errSrc
+app.directive 'nickname',->
+  scope:
+    nickname:'='
+  link:(scope,element,attrs)->
+    scope.$parent.nickname= scope.nickname
+    return unless scope.nickname.match /^\d+$/
+
+    nicolive.getNickname scope.nickname,(error,nickname)->
+      return console.error error if error?
+
+      scope.nickname= nickname
+      scope.$parent.nickname= nickname
 
 app.run (
   $rootScope
@@ -36,6 +51,9 @@ app.run (
   $rootScope.viewer= null
 
   $rootScope.now= -> Math.floor(Date.now()/1000)
+  $rootScope.blank= 'http://uni.res.nimg.jp/img/user/thumb/blank.jpg'
+  profilePrefix= 'http://www.nicovideo.jp/user/'
+  usericonPrefix= 'http://usericon.nimg.jp/usericon/'
 
   $rootScope.view= ->
     $rootScope.error= ''
@@ -46,8 +64,10 @@ app.run (
     mached= channel.match(/lv\d+/)
     $localStorage.channel= mached?[0] or ''
 
+    options= from:50
+
     $webcolorLoadingBar.start()
-    nicolive.view $localStorage.channel,(error,viewer)->
+    nicolive.view $localStorage.channel,options,(error,viewer)->
       $webcolorLoadingBar.complete()
       if error?
         $rootScope.error= cheerio(error).find('code').text()
@@ -72,7 +92,12 @@ app.run (
             chat=
               attr: element.attr()
               body: element.text()
+              usericon: $rootScope.blank
+
+            unless chat.attr.anonymity?
+              {user_id}= chat.attr
+              chat.usericon= usericonPrefix+user_id.slice(0,2)+'/'+user_id+'.jpg' if user_id
 
             $rootScope.chats.unshift chat
 
-  $rootScope.view() if $localStorage.channel.length
+  $rootScope.view() if $localStorage.channel?.length

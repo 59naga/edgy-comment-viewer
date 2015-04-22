@@ -7,6 +7,6 @@
     "angular-jsfxr": "*",
     "angular-webcolor": "~0.0.17",
     "ngstorage": "~0.3.0",
-    "jaggy": "~0.1.16"
+    "jaggy": "~0.1.17-rc.1"
   }
 }

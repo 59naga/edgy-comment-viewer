@@ -1,17 +1,23 @@
+# Auto releasing
 deploy:
   provider: releases
   api_key:
-    secure: maQNx7F2Rn8CztN6whOwEUbOcaIGDKeYn5WmaZShrSAMjA6GkO2C/Zl1cirRZiUwZfxDEdZGMh5gBDu/r65R8vlnZJqYDWVf7nB3She1RjqmrCoKd5W+5d0lpxSmPzK1SHF7JwhcZ65+2dwhdqcJ6H/KpM8nB3CT0XOSDJAsJ8k=
+    secure: aSY1mI9mmzbZCvXFIZpplLSgV7YfGgTDpn4jAGdTfeKNGgaollBqelXKFMbo0UFYI8NJ5R4+NvfbSID5X29wpr2TyQgUSoAII7Xt0Anm0WJn1RkguJBQ83gWpnfTk7FbHXEkGEA/2uPe/6Tu9aMKe3/8b9M5fGjfx9p4ft/agu4=
   file:
-    - build/midnight-osx32.zip
-    - build/midnight-osx64.zip
-    - build/midnight-win32.zip
-    - build/midnight-win64.zip
+    - ../releases/v0.24.0/darwin-x64.zip
+    - ../releases/v0.24.0/win32-ia32.zip
   on:
-    repo: 59naga/midnight
+    repo: 59naga/edgy-comment-viewer
     tags: true
     all_branches: true
   skip_cleanup: true
+
+# language options
+language: node_js
+node_js:
+- '0.10'
+after_success:
+- gulp
 
 # quick boot options
 sudo: false
