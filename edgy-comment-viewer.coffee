@@ -20,4 +20,7 @@ class Application
       @window.openDevTools()
       @window.loadUrl 'http://localhost:59798'
 
+    app.on 'window-all-closed',->
+      app.quit() if process.platform isnt 'darwin'
+
 module.exports= new Application
