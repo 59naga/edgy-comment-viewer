@@ -8,7 +8,7 @@
     "start": "electron .",
     "build": "onefile --json --output public/pkgs.js",
     "prerelease": "npm run build && rm -rf bower_components && coffee -c public/index.coffee",
-    "release": "grunt"
+    "release": "gulp"
   },
 
   "dependencies": {
