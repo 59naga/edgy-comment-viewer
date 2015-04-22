@@ -17,6 +17,7 @@ class Application
         height: 480
 
       @window= new BrowserWindow options
+      @window.openDevTools()
       @window.loadUrl 'http://localhost:59798'
 
 module.exports= new Application

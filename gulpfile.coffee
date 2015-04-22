@@ -1,7 +1,7 @@
 gulp= require 'gulp'
 atom= require 'gulp-atom'
 Promise= require 'bluebird'
-spawn= (require 'child_process').spawn
+exec= (require 'child_process').exec
 
 version= 'v0.24.0'
 platforms= ['win32-ia32','darwin-x64']
@@ -15,14 +15,12 @@ gulp.task 'zip',['build'],->
   promises= []
   for platform in platforms
     promises.push new Promise (resolve,reject)->
-      from= "#{releases}/#{version}/#{platform}"
-      to= "#{releases}/#{version}/#{platform}"
-      script= "zip -r #{to} #{from}"
-      [bin,args...]= script.split ' '
+      script= "cd #{releases}/#{version} && zip -r #{platform} #{platform}"
+      # [bin,args...]= script.split ' '
       
-      child= spawn bin,args,stdio:'ignore'
-      child.on 'error',(error)-> reject error
-      child.on 'close',-> resolve()
+      exec script,{maxBuffer:10000*1024},(error,stdout,stderr)->
+        reject error if error?
+        resolve() unless error?
 
   Promise.all promises
 
