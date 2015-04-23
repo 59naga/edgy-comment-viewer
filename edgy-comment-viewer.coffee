@@ -17,7 +17,7 @@ class Application
         height: 480
 
       @window= new BrowserWindow options
-      @window.openDevTools()
+      @window.openDevTools() if process.env.NODE_ENV isnt 'production'
       @window.loadUrl 'http://localhost:59798'
 
     app.on 'window-all-closed',->

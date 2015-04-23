@@ -5,4 +5,4 @@ module.exports= ($scope,$state)->
     nicolive.login $scope.id,$scope.pw,(error,cookie)->
       return alert error if error?
 
-      $state.go '^'
+      $state.go '^',null,reload:yes

@@ -10,12 +10,16 @@ module.exports= (
 )->
   $rootScope.viewer= null
   $scope.$storage= $localStorage
+  
+  nicolive.ping (error,viewer)->
+    return $state.go '.login' if error?
+    
+    $scope.view() if $localStorage.channel?.length
 
   $scope.now= -> Math.floor(Date.now()/1000)
   $scope.blank= 'http://uni.res.nimg.jp/img/user/thumb/blank.jpg'
   $scope.options=
     from: 50
-    verbose: yes
 
   $scope.disable= ->
     $scope.error= ''
@@ -30,10 +34,6 @@ module.exports= (
 
     $webcolorLoadingBar.start()
     $webcolorLoadingBar.complete()
-
-    # $webcolorLoadingBar.start()
-    # nicolive.logout ->
-    #   $webcolorLoadingBar.complete()
 
   $scope.toggle= ->
     if $rootScope.viewer
@@ -62,10 +62,21 @@ module.exports= (
           $scope.$apply()
 
   $scope.comment= ->
-    $rootScope.viewer.comment $scope.text
-    delete $scope.text
-  
-  nicolive.ping (error,viewer)->
-    return $state.go '.login' if error?
-    
-    $scope.view() if $localStorage.channel?.length
+    return if $scope.busy
+    $scope.busy= yes
+
+    nicolive.ping (error)->
+      return $state.go '.login' if error?
+
+      $webcolorLoadingBar.start()
+      nicolive.view $localStorage.channel,$scope.options,(error,viewer)->
+        if error?
+          $scope.error= error
+          return $scope.$apply()
+
+        viewer.on 'handshaked',->
+          $webcolorLoadingBar.complete()
+          viewer.comment $scope.text
+          delete $scope.text
+
+          $scope.busy= no
