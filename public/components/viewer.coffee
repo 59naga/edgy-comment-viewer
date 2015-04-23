@@ -1,4 +1,5 @@
 nicolive= require 'nicolive'
+viewer= null
 
 module.exports= (
   $rootScope
@@ -8,10 +9,9 @@ module.exports= (
 
   $state
 )->
-  $rootScope.viewer= null
   $scope.$storage= $localStorage
   
-  nicolive.ping (error,viewer)->
+  nicolive.ping (error)->
     return $state.go '.login' if error?
     
     $scope.view() if $localStorage.channel?.length
@@ -20,13 +20,14 @@ module.exports= (
   $scope.blank= 'http://uni.res.nimg.jp/img/user/thumb/blank.jpg'
   $scope.options=
     from: 50
+    verbose: yes
 
   $scope.disable= ->
     $scope.error= ''
     $scope.handshaked= no
     $scope.comments= []
-    $rootScope.viewer.end() if $rootScope.viewer?
-    delete $rootScope.viewer
+    viewer.end() if viewer?
+    viewer= null
 
   $scope.logout= ->
     $scope.disable()
@@ -36,7 +37,7 @@ module.exports= (
     $webcolorLoadingBar.complete()
 
   $scope.toggle= ->
-    if $rootScope.viewer
+    if viewer
       $localStorage.open= !$localStorage.open
     else
       $scope.view() if $localStorage.channel?
@@ -48,35 +49,22 @@ module.exports= (
       return $state.go '.login' if error?
 
       $webcolorLoadingBar.start()
-      nicolive.view $localStorage.channel,$scope.options,(error,viewer)->
+      nicolive.view $localStorage.channel,$scope.options,(error,socket)->
         $webcolorLoadingBar.complete()
         if error?
           $scope.error= error
           return $scope.$apply()
 
-        $rootScope.viewer= viewer
-        $rootScope.viewer.on 'handshaked',->
+        viewer= socket
+        viewer.on 'handshaked',(attr)->
           $scope.handshaked= yes
-        $rootScope.viewer.on 'comment',(comment)->
+          $scope.attr= attr
+        viewer.on 'comment',(comment)->
           $scope.comments.unshift comment
           $scope.$apply()
 
   $scope.comment= ->
-    return if $scope.busy
-    $scope.busy= yes
+    return unless $scope.handshaked
 
-    nicolive.ping (error)->
-      return $state.go '.login' if error?
-
-      $webcolorLoadingBar.start()
-      nicolive.view $localStorage.channel,$scope.options,(error,viewer)->
-        if error?
-          $scope.error= error
-          return $scope.$apply()
-
-        viewer.on 'handshaked',->
-          $webcolorLoadingBar.complete()
-          viewer.comment $scope.text
-          delete $scope.text
-
-          $scope.busy= no
+    nicolive.comment $scope.text,$scope.attr
+    delete $scope.text
