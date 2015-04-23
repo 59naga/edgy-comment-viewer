@@ -5,6 +5,8 @@
   "description": "",
   "scripts": {
     "test": "exit 0",
+
+    "update": "git tag v(jqn package version) && git push --tags",
     
     "start": "electron .",
     "build": "onefile --json --output public/pkgs.js",
@@ -26,7 +28,8 @@
   "devDependencies": {
     "bluebird": "^2.9.24",
     "gulp": "^3.8.11",
-    "gulp-atom": "^0.1.0"
+    "gulp-atom": "^0.1.0",
+    "jqn": "0.0.3"
   },
   "devGlobalDependencies": {
     "electron-prebuilt": "^0.24.0"
