@@ -4,7 +4,21 @@
 meyer-reset()
 edgy()
 
-body
+.prompt
+  prompt()
+.comment
+  form
+    padding .5em
+    display flex
+    >*
+      display block
+    button
+      font-size .75em
+      width 5em
+  
+  ng-hide("fade")
+  
+viewer()
   theme_dark()
   ::selection
     theme_highlight()
@@ -33,6 +47,15 @@ body
     figcaption
       >pre
         font-size 150%
+  
+  header
+    display flex
+    > *
+      display block
+    button
+      font-size 2em
+      width 1em
+
   section
     &.ng-enter
       animation fadeIn .5s
@@ -66,3 +89,7 @@ body
       text-align right
       
     margin .5em
+    
+
+body
+  viewer()

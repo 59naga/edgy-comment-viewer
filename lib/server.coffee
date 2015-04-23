@@ -28,10 +28,11 @@ class Server
 
     server.use (req,res,next)=>
       filePath= lookup req,basedir
-      found= fs.existsSync filePath
-      return next() unless found
 
-      # viaUIRouter= req.accepts().join() is 'text/html'
+      found= fs.existsSync filePath
+      viaUIRouter= req.accepts().join() is 'text/html'
+      return next() unless found
+      return next() unless viaUIRouter
 
       res.render filePath
     server.use express.static basedir
@@ -48,6 +49,10 @@ class Server
         css= rendered
 
       res.end css
+    server.use (req,res)->
+      filePath= lookup req,basedir
+      res.status 404 if not fs.existsSync filePath
+      res.render 'index'
 
     process.env.PUBLIC= basedir
 

@@ -1,9 +1,10 @@
 doctype
-html(lang="en")
+html(ng-app="nicolive" lang="en")
   head
     meta(charset="UTF-8")
     title Document
 
+    base(href="/")
     script(src="pkgs.js")
     script.
       if(process.env.NODE_ENV==='production'){
@@ -18,23 +19,4 @@ html(lang="en")
     link(href="http://static.edgy.black/pixel_mplus10.css" rel="stylesheet")
     link(href="index.css" rel="stylesheet")
 
-  body(ng-app="nicolive")
-    form(ng-submit="view()")
-      input(ng-model="$storage.channel" autofocus placeholder="lv***********")
-      pre(ng-show="error") {{error}}
-    
-    main
-      section(ng-repeat="chat in chats" ng-class="{owner:chat.attr.premium==3,command:chat.attr.premium==2}")
-        figcaption
-          pre(jsfxr="chat.body" jsfxr-disabled="now()-10 > chat.attr.date")
-
-          footer
-            h3 {{chat.attr.no}}
-            pre(time-ago="chat.attr.date")
-        figure(
-          ng-hide="chat.attr.premium==3"
-          nickname="chat.attr.user_id"
-          title="{{nickname}}"
-        )
-          img(ng-src="{{chat.usericon}}" err-src="{{blank}}")
-          h2 {{nickname}}
+  body(ui-view)

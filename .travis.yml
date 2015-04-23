@@ -1,3 +1,16 @@
+# Quick boot options
+sudo: false
+cache:
+  directories:
+    - node_modules
+
+# Language options
+language: node_js
+node_js:
+- '0.10'
+after_success:
+- npm run release
+
 # Auto releasing
 deploy:
   provider: releases
@@ -11,16 +24,3 @@ deploy:
     tags: true
     all_branches: true
   skip_cleanup: true
-
-# language options
-language: node_js
-node_js:
-- '0.10'
-after_success:
-- npm run release
-
-# quick boot options
-sudo: false
-cache:
-  directories:
-    - node_modules

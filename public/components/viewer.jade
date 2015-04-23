@@ -1,0 +1,30 @@
+ui-view
+
+header
+  button(ng-click="disable()") x
+  form(ng-submit="view()")
+    input(ng-model="$storage.channel" autofocus required placeholder="lv***********")
+  button(ng-click="toggle()") o
+
+.comment(ng-show="$storage.open && handshaked")
+  form(ng-submit="comment()")
+    input(ng-model="text" required autofocus)
+    button コメント
+
+pre(ng-show="error") {{error}}
+
+main
+  section(ng-repeat="comment in comments" ng-class="{owner:comment.attr.premium==3,command:comment.attr.premium==2}")
+    figcaption
+      pre(jsfxr="comment.text" jsfxr-disabled="now()-10 > comment.attr.date")
+
+      footer
+        h3 {{comment.attr.no}}
+        pre(time-ago="comment.attr.date")
+    figure(
+      ng-hide="comment.attr.premium>1"
+      nickname="comment.attr.user_id"
+      title="{{nickname}}"
+    )
+      img(ng-src="{{comment.usericon}}" err-src="{{blank}}")
+      h2 {{nickname}}

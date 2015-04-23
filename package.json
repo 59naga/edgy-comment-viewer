@@ -5,6 +5,8 @@
   "description": "",
   "scripts": {
     "test": "exit 0",
+    "login": "nicolive ping",
+    "logout": "nicolive logout",
     "start": "electron .",
     "build": "onefile --json --output public/pkgs.js",
     "prerelease": "npm run build && rm -rf bower_components && coffee -c public/index.coffee",
@@ -18,7 +20,7 @@
     "jade": "^1.9.2",
     "kouto-swiss": "^0.11.11",
     "moment": "^2.10.2",
-    "nicolive": "0.0.0-rc.2",
+    "nicolive": "0.0.0-rc.5",
     "onefile": "^0.2.14-rc.0",
     "stylus": "^0.50.0"
   },
