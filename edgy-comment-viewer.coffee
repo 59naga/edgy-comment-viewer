@@ -2,13 +2,20 @@ app= require 'app'
 crashReporter= require 'crash-reporter'
 BrowserWindow= require 'browser-window'
 
+path= require 'path'
+
 Server= require './lib/server'
 
 class Application
+  constructor: ->
+    process.env.APP= __dirname
+    process.env.PUBLIC= path.join __dirname,'public'
+    process.env.NODE_ENV= 'production' if process.argv.join().indexOf('electron-prebuilt') is -1
+
   boot: ->
     crashReporter.start();
 
-    server= new Server __dirname+'/public'
+    server= new Server process.env.PUBLIC
     server.listen 59798
 
     app.on 'ready',=>

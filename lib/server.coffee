@@ -54,8 +54,6 @@ class Server
       res.status 404 if not fs.existsSync filePath
       res.render 'index'
 
-    process.env.PUBLIC= basedir
-
     return server
 
 module.exports= Server

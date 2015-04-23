@@ -6,14 +6,12 @@ html(ng-app="nicolive" lang="en")
 
     base(href="/")
     script(src="pkgs.js")
-    script.
-      if(process.env.NODE_ENV==='production'){
-        require(process.env.PUBLIC+'/index.js');
-      }
-      else{
-        require('coffee-script/register');
-        require(process.env.PUBLIC+'/index.coffee');
-      }
+    script
+      :coffee
+        path= require 'path'
+
+        require path.join process.env.APP,'node_modules','coffee-script','register'
+        require path.join process.env.PUBLIC,'index.coffee'
 
     link(href="http://static.edgy.black/misaki_gothic.css" rel="stylesheet")
     link(href="http://static.edgy.black/pixel_mplus10.css" rel="stylesheet")

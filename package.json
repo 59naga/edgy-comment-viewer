@@ -1,7 +1,7 @@
 {
   "name": "edgy-comment-viewer",
   "main": "edgy-comment-viewer",
-  "version": "0.0.0-rc.3",
+  "version": "0.0.1",
   "description": "",
   "scripts": {
     "test": "exit 0",
@@ -10,7 +10,7 @@
     
     "start": "electron .",
     "build": "onefile --json --output public/pkgs.js",
-    "prerelease": "npm run build && rm -rf bower_components && coffee -c public/index.coffee",
+    "prerelease": "npm run build && rm -rf bower_components",
     "release": "gulp"
   },
 
