@@ -6,7 +6,7 @@
   "scripts": {
     "test": "exit 0",
 
-    "update": "git tag v(jqn package version) && git push --tags",
+    "update": "git tag v$(jqn package version) && git push --tags",
     
     "start": "electron .",
     "build": "onefile --json --output public/pkgs.js",
