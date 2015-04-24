@@ -1,5 +1,6 @@
-Nicolive Comment Viewer like a [edgy.black][0] [![Build Status][travis-image]][travis]
-===
+# Edgy Comment Viewer [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis]
+
+> Nicolive Comment Viewer like a [edgy.black][0]
 
 [Download Latest](https://github.com/59naga/edgy-comment-viewer/releases/latest)
 
