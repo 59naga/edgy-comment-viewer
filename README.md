@@ -1,4 +1,4 @@
-# Edgy Comment Viewer [![NPM version][npm-image]][npm] [![Build Status][travis-image]][travis]
+# Edgy Comment Viewer [![Build Status][travis-image]][travis]
 
 > Nicolive Comment Viewer like a [edgy.black][0]
 
