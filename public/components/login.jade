@@ -1,7 +1,9 @@
-.prompt
+.login
   form(ng-submit="login()")
-    h1 ログインしてください
-    input(ng-model="id" required placeholder="メールアドレス＼携帯番号")
-    input(ng-model="pw" type="password" required placeholder="パスワード")
+    h1 EDGY
+    h2 COMMENT-VIEWER
+    section
+      input(ng-model="id" required placeholder="EMAIL/PHONE-NUMBER" autofocus)
+      input(ng-model="pw" type="password" required placeholder="PASSWORD")
 
-    button ログイン
+      button LOGIN

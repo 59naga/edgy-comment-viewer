@@ -16,8 +16,6 @@ gulp.task 'zip',['build'],->
   for platform in platforms
     promises.push new Promise (resolve,reject)->
       script= "cd #{releases}/#{version} && zip -r #{platform} #{platform}"
-      # [bin,args...]= script.split ' '
-      
       exec script,{maxBuffer:10000*1024},(error,stdout,stderr)->
         reject error if error?
         resolve() unless error?

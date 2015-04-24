@@ -26,7 +26,8 @@ module.exports= (
     $scope.error= ''
     $scope.handshaked= no
     $scope.comments= []
-    viewer.end() if viewer?
+    
+    viewer.destroy() if viewer?
     viewer= null
 
   $scope.logout= ->
@@ -56,6 +57,9 @@ module.exports= (
           return $scope.$apply()
 
         viewer= socket
+        viewer.on 'error',(error)->
+          $scope.error+= error
+
         viewer.on 'handshaked',(attr)->
           $scope.handshaked= yes
           $scope.attr= attr
