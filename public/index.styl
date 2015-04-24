@@ -4,20 +4,7 @@
 meyer-reset()
 edgy()
 
-.prompt
-  prompt()
-.comment
-  form
-    padding .5em
-    display flex
-    >*
-      display block
-    button
-      font-size .75em
-      width 5em
-  
-  ng-hide("fade")
-  
+
 viewer()
   theme_dark()
   ::selection
@@ -125,7 +112,34 @@ login()
     button
       padding .25em
 
-.viewer
-  viewer()
 .login
   login()
+.viewer
+  viewer()
+.comment
+  form
+    padding .5em
+    display flex
+    >*
+      display block
+    label
+    button
+      font-size .5em
+      
+      width 6em
+      max-width 6em
+      
+    input
+      padding 0 .25em
+    label
+      input[type=checkbox]
+        display none
+      img
+      svg
+        size 100%
+        transition opacity .25s ease-in
+      :checked+img
+      :checked+svg
+        opacity .5
+  
+  ng-hide("fade")

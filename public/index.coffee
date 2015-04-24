@@ -27,4 +27,4 @@ app.run ($rootScope,$state)->
 
 require('./directives/time-ago') app
 require('./directives/err-src') app
-require('./directives/nickname') app
+require('./directives/fetch-nickname') app

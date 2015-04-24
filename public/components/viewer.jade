@@ -9,6 +9,9 @@ ui-view
 
   .comment(ng-show="$storage.open && handshaked")
     form(ng-submit="comment()")
+      label
+        input(ng-model="$storage.anonymity" type="checkbox")
+        img(ng-src="http://res.nimg.jp/img/user/thumb/blank.jpg")
       input(ng-model="text" required)
       button コメント
 
@@ -17,16 +20,25 @@ ui-view
   main(ng-show="handshaked")
     section(ng-hide="comments.length")
       figcaption コメントがない模様
+
     section(ng-repeat="comment in comments" ng-class="{owner:comment.attr.premium==3,command:comment.attr.premium==2}")
+      figure(
+        ng-show="comment.attr.anonymity!=1 && attr.user_id==comment.attr.user_id"
+        fetch-nickname="comment.attr.user_id"
+        title="{{nickname}}"
+      )
+        img(ng-src="{{comment.usericon}}" err-src="{{blank}}")
+        h2 {{nickname}}
       figcaption
         pre(jsfxr="comment.text" jsfxr-disabled="now()-10 > comment.attr.date")
+        pre {{comment.attr|json}}
 
         footer
           h3 {{comment.attr.no}}
           pre(time-ago="comment.attr.date")
       figure(
-        ng-hide="comment.attr.premium>1"
-        nickname="comment.attr.user_id"
+        ng-show="comment.attr.anonymity==1"
+        fetch-nickname="comment.attr.user_id"
         title="{{nickname}}"
       )
         img(ng-src="{{comment.usericon}}" err-src="{{blank}}")

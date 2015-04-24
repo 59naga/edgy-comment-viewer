@@ -10,6 +10,7 @@ module.exports= (
   $state
 )->
   $scope.$storage= $localStorage
+  $scope.$storage.anonymity?= true
   
   nicolive.ping (error)->
     return $state.go '.login' if error?
@@ -70,5 +71,7 @@ module.exports= (
   $scope.comment= ->
     return unless $scope.handshaked
 
-    nicolive.comment $scope.text,$scope.attr
+    $scope.attr.mail= ''
+    $scope.attr.mail= '184' if $scope.$storage.anonymity
+    nicolive.comment $scope.text,{}
     delete $scope.text
