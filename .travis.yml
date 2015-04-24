@@ -1,9 +1,3 @@
-# Quick boot options
-sudo: false
-# cache:
-#   directories:
-#     - node_modules
-
 # Language options
 language: node_js
 node_js:
