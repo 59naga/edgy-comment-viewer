@@ -8,7 +8,7 @@
 ![](https://cloud.githubusercontent.com/assets/1548478/7334804/85104aec-ebd9-11e4-997d-4bd7ff7ce0ef.png)
 
 # Features
-* Pixel art design. like a [edgy.black][X]
+* Designed like edgy.black [edgy.black][X]
 * [jsfxr][A] reading.
 * だいたい日本語
 
