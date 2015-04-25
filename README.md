@@ -4,8 +4,9 @@
 
 [Download 0.0.3-rc.2 Latest](https://github.com/59naga/edgy-comment-viewer/releases/latest)
 
-![](https://cloud.githubusercontent.com/assets/1548478/7334802/83590b30-ebd9-11e4-9f5d-71da55764650.png)
-![](https://cloud.githubusercontent.com/assets/1548478/7334804/85104aec-ebd9-11e4-997d-4bd7ff7ce0ef.png)
+# Screenshots
+
+![](https://cloud.githubusercontent.com/assets/1548478/7334842/d06cf958-ebda-11e4-9d22-5f9420129523.png)
 
 # Features
 * Designed like [edgy.black][X]
