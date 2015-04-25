@@ -18,9 +18,8 @@ ui-view
   pre.error(ng-show="error") {{error}}
 
   main(ng-show="handshaked")
-    section(ng-hide="comments.length")
-      figcaption コメントがない模様
-
+    div(ng-hide="comments.length")
+      section コメントがない模様
     div(ng-repeat="comment in comments")
       section(ng-show="comment.type=='myself'")
         figure(

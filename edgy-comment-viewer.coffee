@@ -16,7 +16,7 @@ class Application
     crashReporter.start();
 
     server= new Server process.env.PUBLIC
-    server.listen 59798
+    server.listen 59799
 
     app.on 'ready',=>
       options=
@@ -25,7 +25,7 @@ class Application
 
       @window= new BrowserWindow options
       @window.openDevTools() if process.env.NODE_ENV isnt 'production'
-      @window.loadUrl 'http://localhost:59798'
+      @window.loadUrl 'http://localhost:59799'
 
     app.on 'window-all-closed',->
       app.quit() if process.platform isnt 'darwin'
