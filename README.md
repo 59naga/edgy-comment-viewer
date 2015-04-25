@@ -2,7 +2,7 @@
 
 > Nicolive Comment Viewer like a [edgy.black][0]
 
-[Download Latest](https://github.com/59naga/edgy-comment-viewer/releases/latest)
+[Download 0.0.3 Latest](https://github.com/59naga/edgy-comment-viewer/releases/latest)
 
 [0]: http://edgy.black/
 

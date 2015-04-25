@@ -2,7 +2,7 @@ ui-view
 
 .viewer
   header
-    button(ng-click="disable()") x
+    button(ng-click="logout()") x
     form(ng-submit="view()")
       input(ng-model="$storage.channel" required placeholder="lv***********")
     button(ng-click="toggle()") o
@@ -21,25 +21,39 @@ ui-view
     section(ng-hide="comments.length")
       figcaption コメントがない模様
 
-    section(ng-repeat="comment in comments" ng-class="{owner:comment.attr.premium==3,command:comment.attr.premium==2}")
-      figure(
-        ng-show="comment.attr.anonymity!=1 && attr.user_id==comment.attr.user_id"
-        fetch-nickname="comment.attr.user_id"
-        title="{{nickname}}"
-      )
-        img(ng-src="{{comment.usericon}}" err-src="{{blank}}")
-        h2 {{nickname}}
-      figcaption
-        pre(jsfxr="comment.text" jsfxr-disabled="now()-10 > comment.attr.date")
-        pre {{comment.attr|json}}
+    div(ng-repeat="comment in comments")
+      section(ng-show="comment.type=='myself'")
+        figure(
+          fetch-nickname="comment.attr.user_id"
+          title="{{nickname}}"
+        )
+          img(ng-src="{{comment.usericon}}" err-src="{{blank}}")
+          h2 {{nickname}}
+        figcaption
+          pre(jsfxr="comment.text" jsfxr-disabled="now()-10 > comment.attr.date")
 
+          footer
+            h3 {{comment.attr.no}}
+            pre(time-ago="comment.attr.date")
         footer
-          h3 {{comment.attr.no}}
-          pre(time-ago="comment.attr.date")
-      figure(
-        ng-show="comment.attr.anonymity==1"
-        fetch-nickname="comment.attr.user_id"
-        title="{{nickname}}"
-      )
-        img(ng-src="{{comment.usericon}}" err-src="{{blank}}")
-        h2 {{nickname}}
+      section(ng-show="comment.type=='anonymous'")
+        footer
+        figcaption
+          pre(jsfxr="comment.text" jsfxr-disabled="now()-10 > comment.attr.date")
+
+          footer
+            h3 {{comment.attr.no}}
+            pre(time-ago="comment.attr.date")
+        figure(
+          fetch-nickname="comment.attr.user_id"
+          title="{{nickname}}"
+        )
+          img(ng-src="{{comment.usericon}}" err-src="{{blank}}")
+          h2 {{nickname}}
+      section(ng-class="{owner:comment.type=='owner',command:comment.type=='command'}" ng-show="comment.type=='command' || comment.type=='owner'")
+        figcaption
+          pre(jsfxr="comment.text" jsfxr-disabled="now()-10 > comment.attr.date")
+
+          footer
+            h3 {{comment.attr.no}}
+            pre(time-ago="comment.attr.date")

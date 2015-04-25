@@ -17,6 +17,10 @@ app.config ($stateProvider)->
     controller: require './components/login'
     templateUrl: 'components/login'
 
+  $stateProvider.state 'viewer.logout',
+    url: '/logout'
+    controller: require './components/logout'
+
   $stateProvider.state 'viewer',
     url: '*path'
     controller: require './components/viewer'

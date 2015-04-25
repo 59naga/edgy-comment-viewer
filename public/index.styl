@@ -53,39 +53,40 @@ viewer()
     button
       max-width 2em
 
-  section
-    &.ng-enter
-      animation fadeIn .5s
-      
-    fig()
-    figure
-      h2
-        text-align right
-        font-size 75%
-    figcaption
-      theme_light()
-      padding .25em
-      
-      position relative
-      footer
-        h3
-          font_text()
-          absolute false false 0 .25em
-          font-size 250%
-          line-height 1.2
-          
-          opacity 0.2
-        pre
-          absolute false .25em .25em false
-          
-          opacity 0.5
-        
-        margin-top .25em
-    
-    footer
-      text-align right
-      
+  div
     margin .5em
+    
+    section
+      &.ng-enter
+        animation fadeIn .5s
+        
+      fig()
+      figure
+        h2
+          text-align right
+          font-size 75%
+      figcaption
+        theme_light()
+        padding .25em
+        
+        position relative
+        footer
+          h3
+            font_text()
+            absolute false false 0 .25em
+            font-size 250%
+            line-height 1.2
+            
+            opacity 0.2
+          pre
+            absolute false .25em .25em false
+            
+            opacity 0.5
+          
+          margin-top .25em
+      
+      footer
+        text-align right
 
 login()
   overlay()
@@ -117,6 +118,11 @@ login()
 .viewer
   viewer()
 .comment
+  &.ng-hide-remove
+    animation 'fadeIn' .25s
+  &.ng-hide-add
+    animation 'fadeOut' .25s
+    
   form
     padding .5em
     display flex
@@ -141,5 +147,3 @@ login()
       :checked+img
       :checked+svg
         opacity .5
-  
-  ng-hide("fade")

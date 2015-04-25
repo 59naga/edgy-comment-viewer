@@ -23,27 +23,6 @@ module.exports= (
     from: 50
     verbose: yes
 
-  $scope.disable= ->
-    $scope.error= ''
-    $scope.handshaked= no
-    $scope.comments= []
-    
-    viewer.destroy() if viewer?
-    viewer= null
-
-  $scope.logout= ->
-    $scope.disable()
-    delete $localStorage.channel
-
-    $webcolorLoadingBar.start()
-    $webcolorLoadingBar.complete()
-
-  $scope.toggle= ->
-    if viewer
-      $localStorage.open= !$localStorage.open
-    else
-      $scope.view() if $localStorage.channel?
-
   $scope.view= ->
     $scope.disable()
 
@@ -65,6 +44,19 @@ module.exports= (
           $scope.handshaked= yes
           $scope.attr= attr
         viewer.on 'comment',(comment)->
+          comment.type= switch
+            when comment.attr.premium is '2'
+              'command'
+
+            when comment.attr.premium is '3'
+              'owner'
+
+            when comment.attr.anonymity isnt '1' and $scope.attr.user_id is comment.attr.user_id
+              'myself'
+
+            else
+              'anonymous'
+
           $scope.comments.unshift comment
           $scope.$apply()
 
@@ -75,3 +67,21 @@ module.exports= (
     $scope.attr.mail= '184' if $scope.$storage.anonymity
     nicolive.comment $scope.text,{}
     delete $scope.text
+
+  $scope.disable= ->
+    $scope.error= ''
+    $scope.handshaked= no
+    $scope.comments= []
+    
+    viewer.destroy() if viewer?
+    viewer= null
+
+  $scope.logout= ->
+    return $scope.disable() if viewer?
+    $state.go 'viewer.logout'
+
+  $scope.toggle= ->
+    if viewer
+      $localStorage.open= !$localStorage.open
+    else
+      $scope.view() if $localStorage.channel?

@@ -1,7 +1,7 @@
 {
   "name": "edgy-comment-viewer",
   "main": "edgy-comment-viewer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "scripts": {
     "test": "exit 0",
@@ -23,9 +23,9 @@
     "jade": "^1.9.2",
     "kouto-swiss": "^0.11.11",
     "moment": "^2.10.2",
-    "nicolive": "0.0.1",
+    "nicolive": "0.0.2",
     "onefile": "^0.2.14-rc.0",
-    "stylus": "^0.50.0"
+    "stylus": "^0.51.0"
   },
   "devDependencies": {
     "bluebird": "^2.9.24",
