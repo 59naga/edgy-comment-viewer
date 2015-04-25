@@ -1,7 +1,7 @@
 {
   "name": "edgy-comment-viewer",
   "main": "edgy-comment-viewer",
-  "version": "0.0.3",
+  "version": "0.0.3-rc.0",
   "description": "",
   "scripts": {
     "test": "exit 0",

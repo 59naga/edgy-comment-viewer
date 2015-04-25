@@ -15,7 +15,7 @@ ui-view
       input(ng-model="text" required)
       button コメント
 
-  pre(ng-show="error") {{error}}
+  pre.error(ng-show="error") {{error}}
 
   main(ng-show="handshaked")
     section(ng-hide="comments.length")
