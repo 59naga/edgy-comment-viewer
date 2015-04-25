@@ -9,6 +9,8 @@ app= angular.module 'nicolive',[
 
   'jsfxr'
 ]
+app.config (jsfxr)->
+   jsfxr.getRandomSound.masterVolume= .5
 app.config ($locationProvider)->
   $locationProvider.html5Mode true
 app.config ($stateProvider)->

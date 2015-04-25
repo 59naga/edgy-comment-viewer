@@ -2,24 +2,44 @@ ui-view
 
 .viewer
   header
-    button(ng-click="logout()") x
+    button(ng-click="logout()" tabindex="-1") x
     form(ng-submit="view()")
-      input(ng-model="$storage.channel" required placeholder="lv***********")
-    button(ng-click="toggle()") o
-
-  .comment(ng-show="$storage.open && handshaked")
-    form(ng-submit="comment()")
+      input(
+        ng-model="$storage.channel"
+        ng-disabled="$state.is('viewer.login')"
+        required
+        placeholder="lv** or co**"
+      )
+    a
+  footer
+    form(
+      ng-show="$storage.open && handshaked"
+      ng-submit="comment()"
+    )
       label
         input(ng-model="$storage.anonymity" type="checkbox")
-        img(ng-src="http://res.nimg.jp/img/user/thumb/blank.jpg")
-      input(ng-model="text" required)
-      button コメント
+        img(ng-src="{{usericon}}" err-src="{{blank}}")
+      input(ng-model="text" required placeholder="{{placeholder}}")
+      button(tabindex="-1") コメント
 
-  pre.error(ng-show="error") {{error}}
+  main(ng-show="!handshaked")
+    .entrance
+      h1 EDGY
+      h2 COMMENT-VIEWER
+      pre.error(ng-show="error") {{error}}
+      form(ng-hide="error" ng-submit="view()")
+        input(
+          ng-model="$storage.channel"
+          ng-disabled="$state.is('viewer.login')"
+          required
+          placeholder="Please type live_id"
+        )
+        button(style="display:none")
 
   main(ng-show="handshaked")
     div(ng-hide="comments.length")
-      section コメントがない模様
+      section コメントがみつかりません
+
     div(ng-repeat="comment in comments")
       section(ng-show="comment.type=='myself'")
         figure(
@@ -30,6 +50,7 @@ ui-view
           h2 {{nickname}}
         figcaption
           pre(jsfxr="comment.text" jsfxr-disabled="now()-10 > comment.attr.date")
+            |{{comment.text}}
 
           footer
             h3 {{comment.attr.no}}
@@ -39,6 +60,7 @@ ui-view
         footer
         figcaption
           pre(jsfxr="comment.text" jsfxr-disabled="now()-10 > comment.attr.date")
+            |{{comment.text}}
 
           footer
             h3 {{comment.attr.no}}
@@ -52,6 +74,7 @@ ui-view
       section(ng-class="{owner:comment.type=='owner',command:comment.type=='command'}" ng-show="comment.type=='command' || comment.type=='owner'")
         figcaption
           pre(jsfxr="comment.text" jsfxr-disabled="now()-10 > comment.attr.date")
+            |{{comment.text}}
 
           footer
             h3 {{comment.attr.no}}

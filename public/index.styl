@@ -4,7 +4,6 @@
 meyer-reset()
 edgy()
 
-
 viewer()
   theme_dark()
   ::selection
@@ -14,23 +13,35 @@ viewer()
     font_head()
   pre
     font_text()
-    
+  
   h2
     font_head()
     font-size 150%
     white-space nowrap
     overflow ellipsis
   
+  .entrance
+    entrance()
+    
   .command
-    margin 1em
-    min-height 3em
+    padding 0 .5em
   .owner
-    margin 2em
-    min-height 3em
+    margin 0 1em
     theme_sepia()
     figcaption
       >pre
         font-size 150%
+  
+  header
+  footer
+    z-index 10
+
+  header
+    fixed 0 0 false 0
+  footer
+    fixed false 0 0 0
+    
+    background-color rgba(#333,.5)
   
   header
     display flex
@@ -39,6 +50,13 @@ viewer()
       height 2rem
       display block
       
+    a
+      display none
+      theme_sepia()
+      cursor move
+      -webkit-user-select none
+      -webkit-app-region drag
+
     input
     button
       font_logo()
@@ -50,19 +68,50 @@ viewer()
       text-align center
       &:focus
         theme_light()
+    a
     button
       max-width 2em
   
-  pre.error
-    margin .5em
+  footer
+    &.ng-hide-remove
+      animation 'fadeIn' .25s
+    &.ng-hide-add
+      animation 'fadeOut' .25s
+      
+    form
+      display flex
+      >*
+        display block
+      label
+      button
+        font-size .5em
+        
+        width 6em
+        max-width 6em
+        
+      input
+        padding 0 .25em
+      label
+        input[type=checkbox]
+          display none
+        img
+        svg
+          size 100%
+          transition opacity .25s ease-in
+        :checked+img
+        :checked+svg
+          opacity .5
+    
+  main
+    padding 2.5em 0
 
   div
+    &.ng-enter
+      animation fadeIn .5s
     margin .5em
     
     section
-      &.ng-enter
-        animation fadeIn .5s
-        
+      min-height 3em
       fig()
       figure
         h2
@@ -96,7 +145,7 @@ login()
   > *
     central()
     width 100%
-    height 8em
+    height 7em
     padding 0
     
     h1
@@ -116,37 +165,33 @@ login()
     button
       padding .25em
 
+entrance()
+  central()
+  height 5em
+  
+  h1
+  h2
+  .error
+    font_logo()
+  
+  h1
+    font-size 6vw
+  h2
+    font-size 4vw
+  form
+    font-size 4vw
+    margin .5em 2em
+    input
+      text-align center
+  .error
+    font-size 3.5vw
+    
+    theme_sepia()
+    padding .5em 0
+    margin .5em auto
+    width 18em
+
 .login
   login()
 .viewer
   viewer()
-.comment
-  &.ng-hide-remove
-    animation 'fadeIn' .25s
-  &.ng-hide-add
-    animation 'fadeOut' .25s
-    
-  form
-    padding .5em
-    display flex
-    >*
-      display block
-    label
-    button
-      font-size .5em
-      
-      width 6em
-      max-width 6em
-      
-    input
-      padding 0 .25em
-    label
-      input[type=checkbox]
-        display none
-      img
-      svg
-        size 100%
-        transition opacity .25s ease-in
-      :checked+img
-      :checked+svg
-        opacity .5

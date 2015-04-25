@@ -22,6 +22,7 @@ class Application
       options=
         width: 320
         height: 480
+        # frame: off
 
       @window= new BrowserWindow options
       @window.openDevTools() if process.env.NODE_ENV isnt 'production'
