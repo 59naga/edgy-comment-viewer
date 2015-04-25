@@ -16,6 +16,20 @@
 [X]: http://edgy.black/
 [A]: http://github.grumdrig.com/jsfxr/
 
+# Build and Develop
+```bash
+$ git clone https://github.com/59naga/edgy-comment-viewer.git
+$ cd edgy-comment-viewer
+$ npm install
+$ npm run build
+# Result:
+#  =     2.24 MB public/pkgs.js
+$ npm install electron-prebuilt --global
+$ electron -v
+# v0.24.0
+$ electron .
+```
+
 License
 ===
 [MIT][License]
