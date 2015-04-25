@@ -10,7 +10,7 @@ ui-view
         required
         placeholder="lv** or co**"
       )
-    a
+    //- a(ui-sref="viewer.config") o
   footer
     form(
       ng-show="$storage.open && handshaked"
@@ -23,7 +23,7 @@ ui-view
       button(tabindex="-1") コメント
 
   main(ng-show="!handshaked")
-    .entrance
+    .entrance(ng-show="$state.is('viewer')")
       h1 EDGY
       h2 COMMENT-VIEWER
       pre.error(ng-show="error") {{error}}

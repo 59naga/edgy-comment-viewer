@@ -1,7 +1,7 @@
 nicolive= require 'nicolive'
 
 module.exports= (app)->
-  app.directive 'fetch-nickname',->
+  app.directive 'fetchNickname',->
     scope:
       fetchNickname:'='
     link:(scope,element,attrs)->

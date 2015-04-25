@@ -25,7 +25,7 @@ module.exports= (
   $scope.blank= 'http://uni.res.nimg.jp/img/user/thumb/blank.jpg'
   $scope.options=
     from: 50
-    verbose: yes if process.env.NODE_ENV isnt 'production'
+    verbose: process.env.NODE_ENV isnt 'production'
 
   $scope.$watch '$storage.anonymity',->
     $scope.placeholder= 'ユーザー名でコメントします'
@@ -39,6 +39,7 @@ module.exports= (
     $localStorage.channel= channel
 
     $scope.disable()
+    $rootScope.title= 'Loading...'
 
     nicolive.ping (error)->
       return $state.go '.login' if error?
@@ -54,6 +55,8 @@ module.exports= (
         usericonURL= (require 'nicolive/lib/api').url.usericonURL
         user_id= nicolive.playerStatus.user_id
         $scope.usericon= usericonURL+user_id.slice(0,2)+'/'+user_id+'.jpg'
+
+        $rootScope.title= nicolive.playerStatus.title+' '+nicolive.playerStatus.description
 
         viewer= socket
         viewer.on 'error',(error)->

@@ -1,10 +1,16 @@
 # Edgy Comment Viewer [![Build Status][travis-image]][travis]
 
-> Nicolive Comment Viewer like a [edgy.black][0]
+> Nicolive Comment Viewer
 
-[Download 0.0.3 Latest](https://github.com/59naga/edgy-comment-viewer/releases/latest)
+[Download 0.0.3-rc.2 Latest](https://github.com/59naga/edgy-comment-viewer/releases/latest)
 
-[0]: http://edgy.black/
+# Features
+* Pixel art design. like a [edgy.black][X]
+* [jsfxr][A] reading.
+* だいたい日本語
+
+[X]: http://edgy.black/
+[A]: http://github.grumdrig.com/jsfxr/
 
 License
 ===

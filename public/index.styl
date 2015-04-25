@@ -32,18 +32,21 @@ viewer()
       >pre
         font-size 150%
   
-  header
-  footer
+  >header
+  >footer
     z-index 10
 
-  header
+  >header
     fixed 0 0 false 0
-  footer
+    
+    box-shadow .2em .2em .2em .2em rgba(0,0,0,0.4)
+  >footer
     fixed false 0 0 0
     
     background-color rgba(#333,.5)
+    box-shadow .2em -.2em .2em .2em rgba(0,0,0,0.4)
   
-  header
+  >header
     display flex
     > *
       flex 1
@@ -51,15 +54,14 @@ viewer()
       display block
       
     a
-      display none
-      theme_sepia()
-      cursor move
-      -webkit-user-select none
-      -webkit-app-region drag
-
     input
     button
       font_logo()
+    
+    a
+      theme_sepia()
+      text-align center
+      line-height 2
 
     input
       flex 20
@@ -72,7 +74,7 @@ viewer()
     button
       max-width 2em
   
-  footer
+  >footer
     &.ng-hide-remove
       animation 'fadeIn' .25s
     &.ng-hide-add
@@ -126,7 +128,7 @@ viewer()
           h3
             font_text()
             absolute false false 0 .25em
-            font-size 250%
+            font-size 200%
             line-height 1.2
             
             opacity 0.2

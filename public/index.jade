@@ -2,7 +2,8 @@ doctype
 html(ng-app="nicolive" lang="en")
   head
     meta(charset="UTF-8")
-    title(ng-bind="title")
+    title(ng-bind-template="{{title}}")
+      |EDGY-COMMENT-VIEWER
 
     base(href="/")
     script(src="pkgs.js")
